@@ -1,0 +1,96 @@
+:root {
+  /* codac-dark — UF cool grey 11 canvas, CODAC green accents */
+  --PRIMARY-color: rgba( 130, 199, 100, 1 );
+  --PRIMARY-HOVER-color: rgba( 156, 219, 128, 1 );
+  --SECONDARY-color: rgba( 117, 170, 219, 1 );
+  --SECONDARY-HOVER-color: rgba( 155, 197, 236, 1 );
+  --ACCENT-color: rgba( 250, 110, 70, 1 );
+  --ACCENT-HOVER-color: rgba( 255, 144, 110, 1 );
+
+  --MENU-HEADER-BG-color: rgba( 38, 41, 49, 1 );
+  --MENU-HEADER-BORDER-color: rgba( 70, 74, 86, 1 );
+  --MENU-HEADER-color: rgba( 235, 235, 235, 1 );
+  --MENU-HOME-LINK-color: rgba( 220, 220, 220, 1 );
+  --MENU-HOME-LINK-HOVER-color: rgba( 255, 255, 255, 1 );
+  --MENU-SEARCH-color: rgba( 224, 224, 224, 1 );
+  --MENU-SEARCH-BG-color: rgba( 30, 32, 38, 1 );
+  --MENU-SEARCH-BORDER-color: rgba( 110, 114, 126, 1 );
+  --MENU-SECTIONS-BG-color: rgba( 44, 47, 56, 1 );
+  --MENU-SECTIONS-ACTIVE-BG-color: rgba( 52, 55, 65, 1 );
+  --MENU-SECTIONS-LINK-color: rgba( 196, 198, 204, 1 );
+  --MENU-SECTIONS-LINK-HOVER-color: rgba( 255, 255, 255, 1 );
+  --MENU-SECTION-ACTIVE-CATEGORY-color: rgba( 130, 199, 100, 1 );
+  --MENU-SECTION-ACTIVE-CATEGORY-BG-color: rgba( 52, 55, 65, 1 );
+  --MENU-SECTION-SEPARATOR-color: rgba( 88, 92, 104, 1 );
+  --MENU-VISITED-color: rgba( 117, 170, 219, 1 );
+
+  --MAIN-BG-color: rgba( 52, 55, 65, 1 );            /* UF cool grey 11 */
+  --MAIN-TEXT-color: rgba( 222, 223, 226, 1 );
+  --MAIN-TITLES-TEXT-color: rgba( 255, 255, 255, 1 );
+  --MAIN-TITLES-H1-TEXT-color: rgba( 255, 255, 255, 1 );
+
+  --CODE-theme: relearn-dark;
+  --CODE-BLOCK-color: rgba( 248, 248, 242, 1 );
+  --CODE-BLOCK-BG-color: rgba( 40, 43, 51, 1 );
+  --CODE-BLOCK-BORDER-color: rgba( 78, 82, 94, 1 );
+  --CODE-INLINE-color: rgba( 150, 219, 120, 1 );
+  --CODE-INLINE-BG-color: rgba( 44, 47, 56, 1 );
+  --CODE-INLINE-BORDER-color: rgba( 78, 82, 94, 1 );
+
+  --BROWSER-theme: dark;
+  --MERMAID-theme: dark;
+  --OPENAPI-theme: dark;
+  --OPENAPI-CODE-theme: obsidian;
+
+  --BOX-CAPTION-color: rgba( 240, 240, 240, 1 );
+  --BOX-BG-color: rgba( 34, 36, 43, 1 );
+  --BOX-TEXT-color: rgba( 224, 224, 224, 1 );
+
+  /* Notice/box colour ramp, lightened for the dark canvas. See the light
+     variant for what each one drives. */
+  --CODAC-BOX-GREEN-color: rgba( 130, 199, 100, 1 );
+  --CODAC-BOX-BLUE-color: rgba( 117, 170, 219, 1 );
+  --CODAC-BOX-ORANGE-color: rgba( 236, 160, 74, 1 );
+  --CODAC-BOX-RED-color: rgba( 226, 96, 78, 1 );
+  --CODAC-BOX-CYAN-color: rgba( 92, 182, 192, 1 );
+  --CODAC-BOX-MAGENTA-color: rgba( 199, 116, 178, 1 );
+  --CODAC-BOX-GREY-color: rgba( 152, 154, 162, 1 );
+
+  --CODAC-CARD-BORDER-color: rgba( 78, 82, 94, 1 );
+  --CODAC-CARD-BG-color: rgba( 44, 47, 56, 1 );
+  --CODAC-TABLE-HEAD-BG-color: rgba( 44, 47, 56, 1 );
+  --CODAC-TABLE-STRIPE-BG-color: rgba( 47, 50, 59, 1 );
+  --CODAC-MUTED-color: rgba( 168, 170, 176, 1 );
+  /* Section band: a shade off the page, distinct from the card background so a
+     grid of cards sitting inside a band still separates from it. */
+  --CODAC-BAND-BG-color: rgba( 40, 41, 50, 1 );
+
+  /* --- brand hues ---------------------------------------------------------
+     The same six as the light variant, and deliberately the same values. The
+     pastels sit at mid lightness, which is dark enough to read as a rule on
+     white and light enough to read as one on this canvas -- so the hue set
+     does not fork, and a card cap is literally the logo's colour in both
+     themes. Only the ink set below has to differ. */
+  --CODAC-HUE-BLUE-color: rgba( 114, 161, 202, 1 );     /* ray 1 - computational sheaf theory */
+  --CODAC-HUE-ORANGE-color: rgba( 202, 149, 114, 1 );   /* ray 2 - learning and control */
+  --CODAC-HUE-GREEN-color: rgba( 151, 202, 114, 1 );    /* ray 3 - compositional optimization */
+  --CODAC-HUE-CREAM-color: rgba( 202, 180, 114, 1 );    /* ray 4 - decisions under uncertainty */
+  --CODAC-HUE-TEAL-color: rgba( 114, 202, 196, 1 );     /* ray 5 - implementation and deployment */
+
+  /* Walked toward white instead, until each clears 5:1 on the dark canvas.
+     The green and the gold were already there and are left alone. */
+  --CODAC-INK-BLUE-color: rgba( 129, 174, 213, 1 );     /* 5.06:1 on the dark page */
+  --CODAC-INK-ORANGE-color: rgba( 212, 160, 125, 1 );   /* 5.16:1 */
+  --CODAC-INK-GREEN-color: rgba( 144, 204, 102, 1 );    /* 6.23:1 */
+  --CODAC-INK-CREAM-color: rgba( 204, 178, 102, 1 );    /* 5.73:1 */
+  --CODAC-INK-TEAL-color: rgba( 102, 204, 197, 1 );     /* 6.22:1 */
+
+  /* A hue has to be laid on more thickly to register against a dark ground
+     than against white, and these pastels are quieter than the saturated hues
+     they replaced, so the tint is up again. */
+  --CODAC-TINT-strength: 19%;
+  /* Washes go the other way: a pale hue laid thickly over a dark ground turns
+     muddy rather than colourful, so the gradients stay lighter here than they
+     are on white. */
+  --CODAC-WASH-strength: 12%;
+}

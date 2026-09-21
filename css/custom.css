@@ -1,0 +1,1404 @@
+/* ---------------------------------------------------------------------------
+   CODAC Centers site components, layered on top of the Relearn theme.
+   Colors come from the theme variant files (theme-codac-*.css).
+   --------------------------------------------------------------------------- */
+
+/* JuliaMono v0.63.2, vendored under static/fonts/ (SIL OFL 1.1; the licence
+   sits next to the files). It was loaded from a jsDelivr `gh/` URL with no
+   version in it, which meant a third-party request on every page load -- the
+   only one on the site, and one that contradicts what layouts/partials/
+   content.html says about not loading anything from anyone else -- pinned to
+   nothing, so an upstream reorganisation would have 404ed the font.
+
+   Two faces, split on disjoint unicode-ranges. The Latin subset is 27KB and
+   covers everything the site's code blocks actually contain (checked: no code
+   or pre element in the built site uses a character above U+00FF). The full
+   face is 1MB, and a browser only fetches it if a page really does use a glyph
+   outside that range -- an `A ∘ B` in a Julia snippet, say, which is the sort
+   of thing that turns up here sooner or later.
+
+   The ranges are disjoint rather than overlapping, so neither face depends on
+   declaration order to win. U+00A4, U+00AD and U+00B5 are listed with the full
+   face because they are the three printable Latin-1 codepoints the subset does
+   not contain; picking the subset for those would drop them to the fallback
+   stack. */
+@font-face {
+  font-family: JuliaMono-Regular;
+  font-display: swap;
+  src: url("/fonts/juliamono/0.63.2/JuliaMono-RegularLatin.woff2") format("woff2");
+  unicode-range: U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00B4, U+00B6-00FF;
+}
+
+@font-face {
+  font-family: JuliaMono-Regular;
+  font-display: swap;
+  src: url("/fonts/juliamono/0.63.2/JuliaMono-Regular.woff2") format("woff2");
+  unicode-range: U+00A4, U+00AD, U+00B5, U+0100-10FFFF;
+}
+
+#R-body code,
+#R-body pre {
+  font-family: JuliaMono-Regular, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* --- card grid (home page, projects, sponsors) ---------------------------- */
+
+.codac-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.codac-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--CODAC-CARD-BORDER-color);
+  border-radius: 6px;
+  background: var(--CODAC-CARD-BG-color);
+  overflow: hidden;
+}
+
+.codac-card__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 11rem;
+  padding: 1rem;
+  background: var(--MAIN-BG-color);
+  border-bottom: 1px solid var(--CODAC-CARD-BORDER-color);
+}
+
+.codac-card__thumb img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  margin: 0;
+}
+
+.codac-card__body { padding: 0.9rem 1rem 1.1rem; }
+
+.codac-card__body h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.codac-card__body p {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+  color: var(--CODAC-MUTED-color);
+}
+
+.codac-card__body > :last-child { margin-bottom: 0; }
+
+/* --- media list (members, alumni, papers) --------------------------------- */
+
+.codac-list { margin: 1.5rem 0; }
+
+.codac-item {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--CODAC-CARD-BORDER-color);
+}
+
+.codac-item:last-child { border-bottom: 1px solid var(--CODAC-CARD-BORDER-color); }
+
+.codac-item__thumb {
+  flex: 0 0 11rem;
+  max-width: 11rem;
+}
+
+.codac-item__thumb img {
+  width: 100%;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.codac-item__body { flex: 1 1 auto; min-width: 0; }
+
+.codac-item__body h3 { margin: 0 0 0.3rem; font-size: 1.15rem; }
+
+.codac-item__meta {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--CODAC-MUTED-color);
+}
+
+.codac-item__meta span + span::before { content: " · "; }
+
+@media screen and (max-width: 48rem) {
+  .codac-item { flex-direction: column; }
+  .codac-item__thumb { flex-basis: auto; max-width: 14rem; }
+}
+
+/* --- person header on member pages ---------------------------------------- */
+
+.codac-person {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.codac-person__photo { flex: 0 0 13rem; max-width: 13rem; }
+.codac-person__photo img { width: 100%; border-radius: 6px; margin: 0; }
+.codac-person__meta { flex: 1 1 auto; }
+
+/* Member facts, arranged by importance rather than as a uniform list: the role
+   leads, standing is a badge beside it, and the attributes are small pills. */
+.codac-person__role {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.codac-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  color: var(--CODAC-MUTED-color);
+}
+.codac-badge--active { color: var(--CODAC-BOX-GREEN-color); }
+
+.codac-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 0.9rem;
+}
+.codac-fact {
+  border: 1px solid var(--CODAC-CARD-BORDER-color);
+  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+  background: var(--CODAC-CARD-BG-color);
+}
+.codac-fact dt {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  color: var(--CODAC-MUTED-color);
+  margin: 0;
+}
+.codac-fact dd {
+  display: block;
+  list-style: none;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+@media screen and (max-width: 48rem) {
+  .codac-person { flex-direction: column; }
+}
+
+.codac-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.codac-btn {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--INTERNAL-MAIN-LINK-color);
+  border-radius: 4px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  text-decoration: none !important;
+}
+
+.codac-btn:hover {
+  background: var(--INTERNAL-MAIN-LINK-color);
+  color: var(--MAIN-BG-color) !important;
+}
+
+/* --- data tables ----------------------------------------------------------- */
+
+.codac-tablewrap { margin: 1.25rem 0; }
+
+.codac-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.codac-filter input,
+.codac-filter select {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--CODAC-CARD-BORDER-color);
+  border-radius: 4px;
+  background: var(--MAIN-BG-color);
+  color: var(--MAIN-TEXT-color);
+  font-size: 0.9rem;
+}
+
+.codac-filter input { flex: 1 1 14rem; min-width: 10rem; }
+
+.codac-scroll { overflow-x: auto; }
+
+table.codac-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+table.codac-table th,
+table.codac-table td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--CODAC-CARD-BORDER-color);
+  text-align: left;
+  vertical-align: top;
+}
+
+table.codac-table thead th {
+  background: var(--CODAC-TABLE-HEAD-BG-color);
+  border-bottom: 2px solid var(--CODAC-CARD-BORDER-color);
+  white-space: nowrap;
+}
+
+table.codac-table tbody tr:nth-child(even) { background: var(--CODAC-TABLE-STRIPE-BG-color); }
+table.codac-table tbody tr:hover { background: var(--MENU-SECTIONS-ACTIVE-BG-color); }
+
+/* The sort control is a real <button> inside the th (custom.js builds it), so
+   that the th keeps its columnheader role. It has to be stripped back to
+   looking like the header text it replaced. */
+table.codac-table th[data-sort] { user-select: none; }
+table.codac-table th[data-sort] .codac-sort {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  cursor: pointer;
+}
+table.codac-table th[data-sort] .codac-sort:focus-visible {
+  outline: 2px solid var(--MAIN-LINK-color, currentColor);
+  outline-offset: 2px;
+}
+table.codac-table th[data-sort]::after { content: " ⇅"; opacity: 0.35; font-size: 0.8em; }
+table.codac-table th[data-sort][aria-sort="ascending"]::after { content: " ↑"; opacity: 1; }
+table.codac-table th[data-sort][aria-sort="descending"]::after { content: " ↓"; opacity: 1; }
+
+/* The link column is optional per row. Keep it narrow so a table of mostly
+   dashes does not steal width from the title, and mute the dash so an absent
+   deck reads as "none posted" rather than as a broken button. */
+table.codac-table td.codac-linkcell { white-space: nowrap; width: 1%; }
+.codac-nolink { color: var(--CODAC-MUTED-color); }
+
+/* A formatted date is short enough to always fit on one line; wrapping it
+   after the comma just makes the rows taller. */
+table.codac-table td.codac-datecell { white-space: nowrap; }
+
+.codac-count { font-size: 0.85rem; color: var(--CODAC-MUTED-color); margin: 0.4rem 0 0; }
+
+/* --- bibliography ---------------------------------------------------------- */
+
+.codac-bib { margin: 1rem 0 2rem; }
+
+/* Numbered references. A counter rather than the default marker, so the number
+   sits in its own right-aligned column and the entry forms a clean block beside
+   it -- including any annotation paragraphs, which indent with it. Wide enough
+   for three digits, since the talks list runs past a hundred. */
+.codac-bib li {
+  counter-increment: bibitem;
+  position: relative;
+  margin-bottom: 0.75rem;
+  padding-left: 3rem;
+  text-indent: 0;
+  list-style: none;
+}
+
+.codac-bib ol { counter-reset: bibitem; padding-left: 0; margin-left: 0; }
+.codac-bib ul { padding-left: 0; margin-left: 0; }
+.codac-bib ol > li::before {
+  content: counter(bibitem) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.4rem;
+  text-align: right;
+  color: var(--CODAC-MUTED-color);
+  font-variant-numeric: tabular-nums;
+}
+.codac-bib .bib-title { font-style: italic; }
+
+/* --- photo gallery + lightbox --------------------------------------------- */
+
+/* Thumbnails are cropped to a common shape so the grid stays even. The photos
+   mix portrait and landscape and the subject sits somewhere different in each,
+   so the framing point is per-image: the gallery shortcode writes an
+   object-position from the `crop` field in front matter, defaulting to centre.
+   The lightbox always shows the uncropped frame. */
+.codac-gallery {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.codac-gallery figure { margin: 0; }
+
+.codac-gallery a,
+.codac-collage a {
+  display: block;
+  height: 100%;
+  border-bottom: 0;
+}
+
+.codac-gallery a:focus-visible,
+.codac-collage a:focus-visible {
+  outline: 3px solid var(--MAIN-LINK-color, currentColor);
+  outline-offset: 2px;
+}
+
+.codac-gallery img {
+  width: 100%;
+  aspect-ratio: var(--codac-crop-aspect, 4 / 3);
+  object-fit: cover;
+  object-position: var(--codac-crop-position, center);
+  border-radius: 4px;
+  cursor: zoom-in;
+  margin: 0;
+}
+
+@media screen and (max-width: 48rem) {
+  .codac-gallery { grid-template-columns: 1fr !important; }
+}
+
+.codac-gallery figcaption {
+  font-size: 0.85rem;
+  color: var(--CODAC-MUTED-color);
+  padding-top: 0.35rem;
+}
+
+/* --- photo collage --------------------------------------------------------- */
+
+/* A wall of photos rather than a row of thumbnails: four columns, tiles that
+   span two of them where the shortcode asks, and `dense` packing so the
+   leftover gaps fill themselves. The row height is fixed, which makes a plain
+   tile roughly square and a `wide` tile roughly 2:1 -- crop the photos
+   accordingly, per tile, with `crop` in front matter. */
+.codac-collage {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 11rem;
+  grid-auto-flow: dense;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.codac-collage figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  margin: 0;
+}
+
+.codac-collage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--codac-crop-position, center);
+  display: block;
+  margin: 0;
+  cursor: zoom-in;
+  transition: transform 0.35s ease;
+}
+
+.codac-collage figure:hover img,
+.codac-collage figure:focus-within img { transform: scale(1.04); }
+
+/* The caption is decoration on top of the photo; the same text is in `alt`, so
+   nothing is lost when it is not showing, and a tap opens the lightbox where it
+   is always visible. */
+.codac-collage figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.6rem 0.6rem 0.5rem;
+  font-size: 0.78rem;
+  line-height: 1.25;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.82));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.codac-collage figure:hover figcaption,
+.codac-collage figure:focus-within figcaption { opacity: 1; }
+
+.codac-collage__tile--wide { grid-column: span 2; }
+.codac-collage__tile--tall { grid-row: span 2; }
+.codac-collage__tile--big { grid-column: span 2; grid-row: span 2; }
+
+@media screen and (max-width: 48rem) {
+  .codac-collage {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 8rem;
+  }
+  /* Two columns leaves no room for a tile to be both wide and ordinary, so the
+     wide ones become full-width bands and the big one keeps its height. */
+  .codac-collage__tile--wide,
+  .codac-collage__tile--big { grid-column: span 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .codac-collage img { transition: none; }
+  .codac-collage figure:hover img,
+  .codac-collage figure:focus-within img { transform: none; }
+}
+
+dialog.codac-lightbox {
+  border: 0;
+  padding: 0;
+  max-width: 96vw;
+  max-height: 96vh;
+  background: transparent;
+  color: #fff;
+}
+
+dialog.codac-lightbox::backdrop { background: rgba(0, 0, 0, 0.86); }
+dialog.codac-lightbox img { display: block; max-width: 96vw; max-height: 86vh; margin: 0 auto; }
+
+dialog.codac-lightbox figcaption {
+  text-align: center;
+  padding: 0.6rem 1rem;
+  font-size: 0.92rem;
+  color: #eee;
+}
+
+dialog.codac-lightbox .codac-lightbox__close {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.5rem;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* --- share row ------------------------------------------------------------- */
+
+/* Sits at the foot of a news item. Deliberately quiet: this is a courtesy for
+   the reader who wants to pass the page on, not a call to action. */
+.codac-share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--CODAC-CARD-BORDER-color);
+  font-size: 0.85rem;
+}
+
+.codac-share__label {
+  color: var(--CODAC-MUTED-color);
+  margin-right: 0.15rem;
+}
+
+.codac-share a,
+.codac-share__copy {
+  border: 1px solid var(--CODAC-CARD-BORDER-color);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  background: var(--CODAC-CARD-BG-color);
+  color: inherit;
+  font: inherit;
+  line-height: 1.6;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.codac-share a:hover,
+.codac-share__copy:hover { border-color: var(--MAIN-LINK-color, currentColor); }
+
+/* --- misc ------------------------------------------------------------------ */
+
+/* Sponsor logos, built to mirror the project team at the top of the page: the
+   same column width, the same round plate, the same caption underneath. A
+   funder and a person are both "who is behind this project", and the page says
+   so twice in the same shape. The logos themselves are seals and wordmarks of
+   wildly different aspect ratios, so each one is contained inside the plate
+   rather than filling it the way a headshot does. */
+.codac-sponsors {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+  margin: 0.4rem 0 1.4rem;
+}
+
+.codac-sponsors li { margin: 0; }
+
+.codac-sponsors a,
+.codac-sponsors__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 6.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.codac-sponsors__plate {
+  display: grid;
+  place-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  /* Every one of these seals is drawn for a white ground, so the plate carries
+     its own rather than inheriting the page's -- otherwise the dark theme eats
+     the navy in the ONR and AFRL marks. */
+  background: #fff;
+  border: 2px solid var(--CODAC-CARD-BORDER-color);
+  transition: border-color 0.15s ease;
+}
+
+.codac-sponsors__plate img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0;
+}
+
+.codac-sponsors a:hover .codac-sponsors__plate,
+.codac-sponsors a:focus-visible .codac-sponsors__plate { border-color: var(--MAIN-LINK-color); }
+
+.codac-sponsors__name {
+  font-size: 0.82rem;
+  line-height: 1.25;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.codac-sponsors a:hover .codac-sponsors__name { color: var(--MAIN-LINK-color); }
+
+#R-body .codac-embed {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--CODAC-CARD-BORDER-color);
+  border-radius: 4px;
+}
+
+/* Both embeds scroll internally, so size them against the viewport rather than
+   pinning a pixel height that overflows on a phone. */
+#R-body .codac-embed--map { height: min(25rem, 60vh); min-height: 15rem; }
+#R-body .codac-embed--doc { height: 80vh; min-height: 24rem; }
+
+.codac-embed-fallback {
+  margin: 0.4rem 0 1.5rem;
+  font-size: 0.9rem;
+  color: var(--CODAC-MUTED-color);
+}
+
+/* The theme hyphenates body text, which on a phone breaks headings
+   mid-word ("Accepting ap-plications for"). */
+#R-body h1, #R-body h2, #R-body h3, #R-body h4, #R-body h5 { hyphens: manual; }
+
+
+/* --- lab-portfolio adjustments ------------------------------------------- */
+
+/* Relearn targets a documentation reading measure; a portfolio wants room for
+   images -- but not unlimited room. --MAIN-WIDTH-MAX covers the sidebar too, so
+   96rem left about 71rem of content against a 46rem column of prose, and the
+   25rem of dead space to the right of every paragraph read as a mistake rather
+   than a margin. 88rem closes it to about 17rem, which reads as a margin. It is
+   also the floor: below roughly 88rem the members grid drops from four faces a
+   row to three. */
+:root { --MAIN-WIDTH-MAX: 88rem; }
+
+/* Headings sized up from the theme's dense reference scale, with more air. */
+#R-body h1 { font-size: 2.6rem; letter-spacing: -0.01em; }
+#R-body h2 { font-size: 1.9rem; margin-top: 2.4rem; }
+#R-body h3 { font-size: 1.3rem; }
+#R-body article > p { line-height: 1.7; }
+
+/* A grid of faces reads as a lab; a stacked list reads as an index. */
+.codac-grid--people { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
+
+.codac-grid--people .codac-card__thumb {
+  height: 15rem;
+  padding: 0;
+  background: var(--CODAC-CARD-BG-color);
+}
+
+.codac-grid--people .codac-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+}
+
+.codac-grid--people .codac-card__body { padding: 0.75rem 0.9rem 0.9rem; }
+.codac-grid--people .codac-card__body h3 { font-size: 1.05rem; }
+.codac-grid--people .codac-item__meta { font-size: 0.8rem; margin-bottom: 0.5rem; }
+
+.codac-grid--software .codac-card__body h3 {
+  font-size: 1rem;
+  overflow-wrap: break-word;
+}
+.codac-grid--software .codac-links { margin-top: 0.6rem; }
+
+/* The figures on the software and project cards are the same figures, and were
+   drawn for a white page: axis labels, Graphviz node text and plot frames are
+   all black. Left on the theme's own background they vanish in dark mode, so
+   these thumbnails keep a white plate in both variants and read as figures
+   rather than as part of the card. */
+.codac-grid--software .codac-card__thumb,
+.codac-grid--figures .codac-card__thumb { background: #fff; }
+
+/* Fill the plate rather than only shrinking to fit it. Several of these
+   figures are SVGs that declare a physical intrinsic size -- Catlab's logo is
+   40mm by 28mm, about 151px -- and `max-height` alone leaves those stranded at
+   half the height of the plate while the rasters beside them fill it. Every
+   figure here is wider than the plate to begin with, so `contain` only ever
+   scales the vectors up and the rasters down. */
+.codac-grid--software .codac-card__thumb img,
+.codac-grid--figures .codac-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Stand-in for the packages that document themselves without a single figure.
+   It holds the row's rhythm without pretending to be a picture: the section's
+   own sidebar icon, greyed down far enough to read as an empty slot. */
+.codac-card__thumb--empty {
+  color: var(--CODAC-CARD-BORDER-color);
+  font-size: 2.5rem;
+}
+
+/* Home page hero: the banner sits full width above the page title. */
+.codac-hero { margin: 0 0 1.75rem; }
+
+/* !important because the theme's image render hook writes an inline
+   style="height:auto;width:auto", which otherwise wins and lets the banner
+   render at its natural 1779px and overflow the column. */
+.codac-hero img {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 6px;
+  margin: 0;
+}
+.codac-hero__tagline {
+  margin: 0.9rem 0 0;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--CODAC-MUTED-color);
+}
+
+/* Project-page hero, set from `hero:` in front matter. The home page's banner
+   is a bar drawn to fill the column; these are documentation figures in
+   whatever shape their example produced, so the plate caps the height and
+   letterboxes instead of stretching or cropping -- a legend or an axis label
+   sliced off the edge is worse than a margin of white. White for the same
+   reason the software thumbnails are white: black axis text on the dark
+   theme's background is unreadable. The caption sits outside the plate, on the
+   page background, so it stays legible in both variants. */
+.codac-hero--page { margin: 0 0 1.75rem; }
+
+.codac-hero__plate {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid var(--CODAC-CARD-BORDER-color);
+  border-radius: 6px;
+}
+
+/* WCAG 2.2.2: the hero loops for longer than five seconds, so it needs a stop.
+   The template ships native `controls` for the no-JS case and custom.js swaps
+   them for this, which sits out of the way until it is hovered or focused. */
+.codac-hero__toggle {
+  position: absolute;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 1;
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 0.35rem 0.7rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
+}
+
+.codac-hero__plate:hover .codac-hero__toggle,
+.codac-hero__toggle:hover,
+.codac-hero__toggle:focus-visible { opacity: 1; }
+
+.codac-hero__toggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .codac-hero__toggle { transition: none; opacity: 1; }
+}
+
+.codac-hero--page img,
+.codac-hero--page video {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: 20rem;
+  border-radius: 0;
+  margin: 0;
+}
+
+.codac-hero--page figcaption {
+  margin: 0.55rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--CODAC-MUTED-color);
+}
+
+/* Annotations on bibliography and project entries. Set slightly narrower than
+   the surrounding text so a run of them reads as commentary, not body copy. */
+.codac-annotation {
+  margin: 0.4rem 0 0;
+  max-width: 46rem;
+  font-size: 0.94rem;
+  color: var(--MAIN-TEXT-color);
+  border-left: 2px solid var(--CODAC-BOX-ORANGE-color);
+  padding-left: 0.75rem;
+  opacity: 0.88;
+}
+
+/* "Read it for" is guidance for our own students rather than part of the
+   citable annotation, so it is set apart from the paragraph above it. */
+.codac-annotation--guide { font-size: 0.88rem; opacity: 0.8; }
+.codac-annotation--guide span {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+.codac-annotation p { display: inline; margin: 0; }
+
+/* Chips: structured data on a card rendered as small controls. A chip that
+   links somewhere looks clickable; one that does not is flat, so a name without
+   a member page does not read as a broken link. */
+.codac-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.6rem; }
+.codac-chip {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--MAIN-LINK-color, currentColor);
+  opacity: 0.55;
+  white-space: nowrap;
+}
+.codac-chip--link {
+  opacity: 1;
+  text-decoration: none;
+  background: transparent;
+}
+.codac-chip--link:hover, .codac-chip--link:focus-visible {
+  background: var(--MAIN-LINK-color);
+  color: var(--MAIN-BG-color);
+}
+
+/* Compact cards: a name, a line of context and one button. Narrower than the
+   people cards, which carry a photo. */
+.codac-grid--compact { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
+.codac-card--compact .codac-card__body h3 { font-size: 1rem; margin-bottom: 0.15rem; }
+.codac-card--compact .codac-card__body p { font-size: 0.88rem; }
+
+/* Project team: a row of linked headshots. Faces identify a team faster than
+   names, and every photo is a link to that person's page. */
+.codac-team {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+  margin: 0.4rem 0 1.4rem;
+}
+.codac-team li { margin: 0; }
+.codac-team a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 6.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+.codac-team img, .codac-team__initials {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
+  border: 2px solid transparent;
+  transition: border-color 0.15s ease;
+}
+.codac-team__initials {
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  background: var(--CODAC-CARD-BG-color);
+  color: var(--CODAC-MUTED-color);
+}
+.codac-team a:hover img, .codac-team a:focus-visible img,
+.codac-team a:hover .codac-team__initials { border-color: var(--MAIN-LINK-color); }
+.codac-team__name {
+  font-size: 0.82rem;
+  line-height: 1.25;
+  text-align: center;
+  text-wrap: balance;
+}
+.codac-team a:hover .codac-team__name { color: var(--MAIN-LINK-color); }
+
+/* --- news list ------------------------------------------------------------ */
+
+/* Only some news items have a photo. With the thumbnail on the left, those rows
+   indent their headline by the width of the image and the rest start at the
+   margin, so nothing lines up down the page; reserving an empty column instead
+   leaves a 14rem hole beside every text-only item. Putting the photo on the
+   right keeps every date and headline on the same left edge and lets the
+   photoless items simply run wider. */
+.codac-list--news .codac-item { flex-direction: row-reverse; }
+
+/* News photos are wide event shots, not portraits or logos, so the thumbnail is
+   a fixed 4:3 crop rather than a contained image: a 3:2 award photo and a 4:3
+   commencement photo would otherwise set different row heights. */
+.codac-list--news .codac-item__thumb { flex-basis: 14rem; max-width: 14rem; }
+
+.codac-list--news .codac-item__thumb img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The date leads the entry, so it sits above the headline rather than under it
+   the way person metadata does. */
+.codac-list--news .codac-item__meta {
+  margin: 0 0 0.2rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Below the two-column threshold the photo stacks above the entry. The
+   direction has to be restated here: the row-reverse rule above is two classes
+   to the base list's one, and a media query adds no specificity, so without
+   this the row survives on a phone -- and the thumbnail, which keeps
+   `flex-shrink: 0` from the base, then holds the source image's full width and
+   pushes the headline off the screen.
+
+   The 24rem cap is what keeps the stacked photo in proportion. This breakpoint
+   runs all the way to 48rem, and an uncapped 4:3 photo at that width would be
+   576px tall -- a hero image on top of a two-line news entry. On a phone the
+   column is narrower than the cap, so the photo still runs edge to edge. */
+@media screen and (max-width: 48rem) {
+  .codac-list--news .codac-item { flex-direction: column; }
+  .codac-list--news .codac-item__thumb { flex: 0 0 auto; max-width: min(100%, 24rem); }
+}
+
+
+/* ===========================================================================
+   Reading less like documentation
+   ---------------------------------------------------------------------------
+   The sidebar stays: the site is also reference material for people in the
+   lab. Everything below is about the content column, which does not have to
+   read like an API reference just because the navigation does.
+   =========================================================================== */
+
+/* --- page titles ----------------------------------------------------------- */
+
+/* Relearn centres the page title and sets it in all caps. That is a manual
+   header; on a lab site "MEMBERS" floating above a group photo reads as a
+   section divider in a spec rather than the start of a page. Left-aligned and
+   sentence case, so the title starts where the prose starts. */
+#R-body-inner > .flex-block-wrapper article h1 {
+  text-align: start;
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+#R-body-inner > .flex-block-wrapper article.narrow h1 { border-bottom: 0; }
+
+#R-body h2 { font-weight: 650; letter-spacing: -0.01em; }
+#R-body h3 { font-weight: 650; }
+
+/* --- reading measure ------------------------------------------------------- */
+
+/* --MAIN-WIDTH-MAX is 96rem so galleries and card grids have room, but prose
+   set to 96rem runs past 120 characters a line, which is where a page stops
+   being read and starts being scanned -- the documentation reflex. Constrain
+   running text only; grids, figures, tables and heroes keep the full column. */
+#R-body article > p,
+#R-body article > ul,
+#R-body article > ol,
+#R-body article > blockquote,
+#R-body article > h2,
+#R-body article > h3,
+#R-body article > h4 {
+  max-width: 46rem;
+}
+
+/* Lists nested under a constrained list must not re-constrain and step inwards
+   again on every level. */
+#R-body article > ul ul,
+#R-body article > ol ol { max-width: none; }
+
+/* The other half of the measure. Relearn sets body text at 1.015625rem, a
+   density that suits a reference page being scanned for one line; at 46rem that
+   is about 88 characters, which is past where a line is comfortable to read
+   straight through. Larger type brings the same column down to roughly 78. */
+#R-body article > p,
+#R-body article > ul,
+#R-body article > ol { font-size: 1.1rem; }
+
+/* Markdown wraps a standalone image in a paragraph, so the measure would shrink
+   every figure on the site to the width of running text. Photos are not prose;
+   give them the column back. */
+#R-body article > p:has(img),
+#R-body article > p:has(video) { max-width: none; }
+
+/* --- mono as the lab's voice ----------------------------------------------- */
+
+/* The site already loads JuliaMono for code. Reusing it for the small
+   structural labels -- dates, eyebrows, metadata -- costs no extra download and
+   gives the pages an identity that reads as a computational lab, where
+   otherwise every word on the site is set in the same system sans at the same
+   weight. Kept to labels: mono running text would be worse than plain. */
+.codac-eyebrow,
+.codac-list--news .codac-item__meta {
+  font-family: JuliaMono-Regular, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--CODAC-MUTED-color);
+}
+
+.codac-eyebrow { margin: 0 0 0.6rem; }
+
+/* --- home page hero -------------------------------------------------------- */
+
+/* The home page used to open with the theme's centred title, then the brand
+   bar, then a paragraph that began by expanding the acronym. A visitor met a
+   definition before a claim. The hero leads with the claim and gives them two
+   places to go.
+
+   `:has()` hides the theme's own <h1> only on the page carrying the hero, so
+   the hero's headline is the page's single h1 and every other page keeps its
+   title. */
+#R-body-inner:has(.codac-hero--home) > .flex-block-wrapper article > h1 { display: none; }
+
+.codac-hero--home { margin: 0 0 2.5rem; }
+
+/* The mark used to be the first thing on the page and was sized to fill the
+   column. Now that a headline leads, a full-width mark competes with it -- so it
+   drops back to a supporting lockup at its natural reading size. The cap is
+   deliberately tight: the patch is square, not a wide lockup, so a width that
+   would suit a bar makes it tall enough to push the whole page down. */
+.codac-hero--home img {
+  display: block;
+  max-width: 13rem;
+  /* The theme centres block images; left-aligned, the bar lines up with the
+     headline and the buttons instead of floating between them. */
+  margin: 0.5rem auto 0 0 !important;
+}
+
+.codac-hero--home .codac-hero__title {
+  margin: 0 0 0.75rem;
+  max-width: 20ch;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.codac-hero--home .codac-hero__tagline {
+  max-width: 46rem;
+  margin: 0 0 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--CODAC-MUTED-color);
+}
+
+.codac-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 0 0 2rem;
+}
+
+.codac-hero__actions .codac-btn { padding: 0.5rem 1.1rem; font-size: 0.95rem; }
+
+.codac-btn--primary {
+  background: var(--INTERNAL-MAIN-LINK-color);
+  color: var(--MAIN-BG-color) !important;
+}
+
+.codac-btn--primary:hover { filter: brightness(1.12); }
+
+@media screen and (max-width: 48rem) {
+  .codac-hero--home .codac-hero__title { font-size: 2.1rem; }
+  .codac-hero--home .codac-hero__tagline { font-size: 1.05rem; }
+}
+
+/* --- call to action -------------------------------------------------------- */
+
+/* Recruiting copy and event announcements were living in `notice` boxes. An
+   admonition is the most recognisable documentation component there is, and it
+   tells the reader "aside, safe to skip" -- the opposite of what a hiring
+   notice wants. This is the same information given a shape of its own. */
+.codac-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin: 2rem 0;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid var(--CODAC-CARD-BORDER-color);
+  border-inline-start: 4px solid var(--INTERNAL-MAIN-LINK-color);
+  border-radius: 6px;
+  background: var(--CODAC-CARD-BG-color);
+}
+
+.codac-cta__body { flex: 1 1 22rem; min-width: 0; }
+
+/* #R-body h2 sets a 2.4rem top margin and wins on id specificity, which opens
+   a hole above the heading inside the box. */
+#R-body .codac-cta__body h2,
+#R-body .codac-cta__body h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  font-weight: 650;
+}
+
+.codac-cta__body p { margin: 0; max-width: 46rem; color: var(--CODAC-MUTED-color); }
+.codac-cta__body > :last-child { margin-bottom: 0; }
+.codac-cta__action { flex: 0 0 auto; }
+
+/* Quiet variant for something that is context rather than an invitation --
+   a conference already held, say. */
+.codac-cta--quiet { border-inline-start-color: var(--CODAC-CARD-BORDER-color); }
+
+/* --- section banding ------------------------------------------------------- */
+
+/* Every page is one column on one background, sections separated only by an
+   h2, which is exactly the rhythm of a reference manual. A band pulls out to
+   the column edges and puts a section on its own ground, so the page has more
+   than one texture as you scroll. */
+.codac-band {
+  margin: 2.75rem -1.6rem;
+  padding: 2rem 1.6rem 2.25rem;
+  background: var(--CODAC-BAND-BG-color);
+  border-block: 1px solid var(--CODAC-CARD-BORDER-color);
+}
+
+.codac-band > :first-child { margin-top: 0; }
+.codac-band > :last-child { margin-bottom: 0; }
+.codac-band h2 { margin-top: 0; }
+
+/* ===========================================================================
+   Colour
+   ---------------------------------------------------------------------------
+   The pages above are laid out in greys: a grey sidebar, a white column, grey
+   bands, and colour only where the theme puts a link. That is legible and
+   completely anonymous -- and the lab's own mark is a commuting square of
+   coloured nodes, which is a palette sitting unused.
+
+   So: the mark's own blue, green and orange -- pastels of the UF colours --
+   plus three UF secondaries pitched into the same key, used as decoration
+   rather than as text. Every rule here colours a border, a wash, a small label
+   or a hover state; body copy, headings and links keep the contrast they had.
+   Where a hue does carry text, it comes from the --CODAC-INK-* set, which is
+   picked to clear 5:1 on both canvases.
+
+   Julia's palette is not this palette. It belongs to the package figures under
+   `assets/images/software/`, which are marks for Julia packages, and it does
+   not appear anywhere in the site's own chrome.
+
+   Elements that cycle through hues set --codac-accent on themselves, and the
+   component reads that one variable, so a card, a chip and a heading tick all
+   pick up their colour the same way.
+   =========================================================================== */
+
+/* --- how a hue is applied -------------------------------------------------
+   A wash is the hue over the page; a tint is the hue mixed into a surface. The
+   strengths are per-variant (a dark canvas needs more) and live in the theme
+   files. */
+
+:root {
+  --codac-accent: var(--CODAC-HUE-GREEN-color);
+  --codac-accent-ink: var(--CODAC-INK-GREEN-color);
+}
+
+/* --- home hero ------------------------------------------------------------ */
+
+/* The headline used to open on the same white as the rest of the page. Five
+   soft washes -- one per institutional ray, blue through teal -- put it on
+   ground of its own without printing a single hard edge. */
+.codac-hero--home {
+  margin: 0 -1.6rem 2.5rem;
+  padding: 2.5rem 1.6rem 2rem;
+  background:
+    radial-gradient(46rem 28rem at 6% 10%,
+      color-mix(in srgb, var(--CODAC-HUE-BLUE-color) calc(var(--CODAC-WASH-strength) * 1.7), transparent), transparent 70%),
+    radial-gradient(40rem 24rem at 92% 6%,
+      color-mix(in srgb, var(--CODAC-HUE-ORANGE-color) calc(var(--CODAC-WASH-strength) * 1.4), transparent), transparent 70%),
+    radial-gradient(44rem 26rem at 70% 0%,
+      color-mix(in srgb, var(--CODAC-HUE-GREEN-color) calc(var(--CODAC-WASH-strength) * 1.5), transparent), transparent 70%),
+    radial-gradient(42rem 26rem at 60% 112%,
+      color-mix(in srgb, var(--CODAC-HUE-CREAM-color) calc(var(--CODAC-WASH-strength) * 1.6), transparent), transparent 70%),
+    radial-gradient(30rem 20rem at 8% 118%,
+      color-mix(in srgb, var(--CODAC-HUE-TEAL-color) calc(var(--CODAC-WASH-strength) * 1.3), transparent), transparent 70%);
+  border-bottom: 1px solid var(--CODAC-CARD-BORDER-color);
+}
+
+/* --- eyebrows and dates ---------------------------------------------------- */
+
+/* These labels were grey on grey: present, but doing no work. In the accent
+   ink they read as the lab's own furniture, and a news date becomes something
+   the eye can find down a long list. */
+.codac-eyebrow { color: var(--CODAC-INK-ORANGE-color); }
+.codac-list--news .codac-item__meta { color: var(--CODAC-INK-CREAM-color); }
+
+/* --- headings -------------------------------------------------------------- */
+
+/* The page title carried a full-width grey rule, which is a divider in a
+   manual. A short bar in the brand's own gradient says the same thing and
+   says whose page it is. */
+#R-body-inner > .flex-block-wrapper article h1 {
+  border-bottom: 0;
+  padding-bottom: 0.6rem;
+  position: relative;
+}
+
+#R-body-inner > .flex-block-wrapper article h1::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: 0;
+  width: 5.5rem;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,
+    var(--CODAC-HUE-BLUE-color),
+    var(--CODAC-HUE-ORANGE-color) 25%,
+    var(--CODAC-HUE-GREEN-color) 50%,
+    var(--CODAC-HUE-CREAM-color) 75%,
+    var(--CODAC-HUE-TEAL-color));
+}
+
+/* Section headings get a tick of a single hue, cycling down the page in the
+   order the rays leave the lens in the overview figure -- blue, orange, green,
+   cream, teal -- so scrolling a long page has a rhythm to it. */
+#R-body article > h2 {
+  position: relative;
+  padding-top: 0.7rem;
+}
+
+#R-body article > h2::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  width: 2.25rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--codac-accent);
+}
+
+#R-body article > h2:nth-of-type(5n+1) { --codac-accent: var(--CODAC-HUE-BLUE-color); }
+#R-body article > h2:nth-of-type(5n+2) { --codac-accent: var(--CODAC-HUE-ORANGE-color); }
+#R-body article > h2:nth-of-type(5n+3) { --codac-accent: var(--CODAC-HUE-GREEN-color); }
+#R-body article > h2:nth-of-type(5n+4) { --codac-accent: var(--CODAC-HUE-CREAM-color); }
+#R-body article > h2:nth-of-type(5n+5) { --codac-accent: var(--CODAC-HUE-TEAL-color); }
+
+/* Only a heading that is a direct child of the article gets a tick: one inside
+   a band or a call-to-action belongs to that component, and the component
+   already carries the colour. */
+
+/* --- cards ----------------------------------------------------------------- */
+
+/* A grid of white rectangles reads as a table with pictures. A coloured cap on
+   each card turns the same grid into a set of distinct things, and the hue
+   cycles so a row of four never repeats. The cycle opens on the mark's own
+   three, so the first row of a three-up grid is the logo, left to right. */
+.codac-card {
+  border-top: 3px solid var(--codac-accent);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+/* The ink half of the pair travels with the hue, so anything inside the card
+   that carries text -- a chip, a label -- reads as part of the same card
+   rather than picking a colour of its own. */
+.codac-grid > .codac-card:nth-child(5n+1) { --codac-accent: var(--CODAC-HUE-BLUE-color); --codac-accent-ink: var(--CODAC-INK-BLUE-color); }
+.codac-grid > .codac-card:nth-child(5n+2) { --codac-accent: var(--CODAC-HUE-ORANGE-color); --codac-accent-ink: var(--CODAC-INK-ORANGE-color); }
+.codac-grid > .codac-card:nth-child(5n+3) { --codac-accent: var(--CODAC-HUE-GREEN-color); --codac-accent-ink: var(--CODAC-INK-GREEN-color); }
+.codac-grid > .codac-card:nth-child(5n+4) { --codac-accent: var(--CODAC-HUE-CREAM-color); --codac-accent-ink: var(--CODAC-INK-CREAM-color); }
+.codac-grid > .codac-card:nth-child(5n+5) { --codac-accent: var(--CODAC-HUE-TEAL-color); --codac-accent-ink: var(--CODAC-INK-TEAL-color); }
+
+.codac-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--codac-accent) 45%, var(--CODAC-CARD-BORDER-color));
+  border-top-color: var(--codac-accent);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--codac-accent) 18%, transparent);
+}
+
+/* The thumbnail plate is the card's own ground; a wash of its hue keeps a
+   figure with a white background from cutting a hole in the card. */
+.codac-card__thumb {
+  background: color-mix(in srgb, var(--codac-accent) calc(var(--CODAC-TINT-strength) / 2), var(--MAIN-BG-color));
+}
+
+/* A headshot fills its plate, so the wash would never show. The figure cards
+   keep the white plate they had -- several of those diagrams are drawn on
+   white and would otherwise sit in a coloured hole. (Restated here because the
+   tint above is declared later in the file than the original rule.) */
+.codac-grid--people .codac-card__thumb { background: var(--MAIN-BG-color); }
+.codac-grid--figures .codac-card__thumb { background: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .codac-card { transition: none; }
+  .codac-card:hover { transform: none; }
+}
+
+/* --- bands ----------------------------------------------------------------- */
+
+/* The band already pulled a section onto its own ground. A hairline of the
+   section's hue along the top, and an optional tint, make it a place rather
+   than a shade of grey. Add `codac-band--blue|green|orange|violet` in the
+   markup to pick the hue; the default is the warm neutral with a green rule. */
+.codac-band {
+  border-block-start: 3px solid var(--codac-accent);
+  background:
+    linear-gradient(color-mix(in srgb, var(--codac-accent) var(--CODAC-TINT-strength), transparent), transparent 12rem),
+    var(--CODAC-BAND-BG-color);
+}
+
+.codac-band--blue { --codac-accent: var(--CODAC-HUE-BLUE-color); }
+.codac-band--green { --codac-accent: var(--CODAC-HUE-GREEN-color); }
+.codac-band--orange { --codac-accent: var(--CODAC-HUE-ORANGE-color); }
+.codac-band--teal { --codac-accent: var(--CODAC-HUE-TEAL-color); }
+.codac-band--cream { --codac-accent: var(--CODAC-HUE-CREAM-color); }
+
+/* --- call to action -------------------------------------------------------- */
+
+/* An invitation should look like one. The orange edge and a wash behind it are
+   the loudest thing on a page, which is the point; the quiet variant keeps the
+   neutral edge it had. */
+.codac-cta {
+  --codac-accent: var(--CODAC-HUE-ORANGE-color);
+  border-inline-start-color: var(--codac-accent);
+  background:
+    linear-gradient(90deg,
+      color-mix(in srgb, var(--codac-accent) var(--CODAC-TINT-strength), transparent), transparent 60%),
+    var(--CODAC-CARD-BG-color);
+}
+
+.codac-cta--quiet {
+  --codac-accent: var(--CODAC-CARD-BORDER-color);
+  background: var(--CODAC-CARD-BG-color);
+}
+
+/* --- chips, badges and facts ------------------------------------------------ */
+
+/* Chips carry structured data -- on this site, the people who work on a
+   package -- and were drawn as outlines of one colour at half opacity. Tinted,
+   they stop looking like disabled buttons. They take their hue from whatever
+   contains them, so a card's chips match its cap: a person is not a different
+   colour in every card, and the row of chips still reads as one card's roster
+   rather than as confetti. */
+.codac-chip {
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--codac-accent) 40%, transparent);
+  background: color-mix(in srgb, var(--codac-accent) var(--CODAC-TINT-strength), var(--MAIN-BG-color));
+  color: var(--codac-accent-ink);
+}
+
+.codac-chip--link:hover, .codac-chip--link:focus-visible {
+  background: var(--codac-accent);
+  color: var(--MAIN-BG-color);
+  border-color: var(--codac-accent);
+}
+
+/* A status badge is a status, so it gets filled rather than outlined. */
+.codac-badge {
+  border-color: color-mix(in srgb, currentColor 45%, transparent);
+  background: color-mix(in srgb, currentColor var(--CODAC-TINT-strength), var(--MAIN-BG-color));
+}
+
+.codac-badge--active { color: var(--CODAC-INK-GREEN-color); }
+
+/* The label above each fact on a member page. The captions take the gold --
+   the sixth hue, and the one the site uses nowhere else -- so that a label is
+   never mistaken for a link, which is what happens to a small blue word. */
+.codac-fact dt { color: var(--CODAC-INK-CREAM-color); }
+
+/* --- tables ---------------------------------------------------------------- */
+
+/* The header row was a grey band on a white table -- the exact look of a data
+   dump. A green wash and a green rule under it give the table a top edge that
+   belongs to the site. */
+table.codac-table thead th {
+  background: color-mix(in srgb, var(--CODAC-HUE-GREEN-color) var(--CODAC-TINT-strength), var(--MAIN-BG-color));
+  border-bottom: 2px solid color-mix(in srgb, var(--CODAC-HUE-GREEN-color) 55%, transparent);
+}
+
+table.codac-table tbody tr:hover {
+  background: color-mix(in srgb, var(--CODAC-HUE-BLUE-color) var(--CODAC-TINT-strength), var(--MAIN-BG-color));
+}
+
+/* --- quotes ---------------------------------------------------------------- */
+
+#R-body article > blockquote {
+  border-inline-start: 3px solid var(--CODAC-HUE-TEAL-color);
+  background: color-mix(in srgb, var(--CODAC-HUE-TEAL-color) calc(var(--CODAC-TINT-strength) / 1.5), transparent);
+  border-radius: 0 4px 4px 0;
+}
+
+/* --- sidebar ---------------------------------------------------------------- */
+
+/* Each top-level section keeps one hue, in its icon, all the way down the menu.
+   It is the only colour in the sidebar and it makes the nav scannable by
+   something other than reading it. */
+#R-content-wrapper .R-shortcutmenu-main > ul > li:nth-child(5n+1) { --codac-accent-ink: var(--CODAC-INK-BLUE-color); }
+#R-content-wrapper .R-shortcutmenu-main > ul > li:nth-child(5n+2) { --codac-accent-ink: var(--CODAC-INK-ORANGE-color); }
+#R-content-wrapper .R-shortcutmenu-main > ul > li:nth-child(5n+3) { --codac-accent-ink: var(--CODAC-INK-GREEN-color); }
+#R-content-wrapper .R-shortcutmenu-main > ul > li:nth-child(5n+4) { --codac-accent-ink: var(--CODAC-INK-CREAM-color); }
+#R-content-wrapper .R-shortcutmenu-main > ul > li:nth-child(5n+5) { --codac-accent-ink: var(--CODAC-INK-TEAL-color); }
+
+#R-content-wrapper .R-shortcutmenu-main > ul > li > a > i {
+  color: var(--codac-accent-ink);
+}
+
+/* The active section is already lit; the bar down its edge says where you are
+   without needing the highlight to be any stronger. */
+#R-content-wrapper .R-shortcutmenu-main > ul > li.active > a {
+  box-shadow: inset 3px 0 0 var(--codac-accent-ink);
+}
