@@ -9,8 +9,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "CODAC \u003e People",
-    "content": "PhD student Alumni AffiliationUniversity of Florida In the lab since2021 Dissertation NCR Lab Cristian Nino took his PhD in Mechanical Engineering at the University of Florida under Warren Dixon, in the Nonlinear Controls and Robotics lab, and received the MAE department’s Best Dissertation Award in 2026. He is now a research scientist in collaborative autonomy at the Institute for Human \u0026 Machine Cognition in Pensacola.\nHe came to the PhD from the University of Florida with bachelor’s degrees in both Mechanical Engineering and Mathematics, having worked as a robotics research assistant across six labs as an undergraduate. His research is on online reinforcement learning, stochastic control, and network control applied to multi-agent guidance and optimization.\nFor the center, he is an author on Heterogeneous Multi-Agent Multi-Target Tracking using Cellular Sheaves, which appears at the European Control Conference.",
-    "description": "PhD in Mechanical Engineering under Warren Dixon; multi-agent tracking and coordination. Now a research scientist at IHMC.",
+    "content": "PhD student Alumni AffiliationUniversity of Florida In the lab since2021 Dissertation NCR Lab Cristian Nino earned his PhD in Mechanical Engineering at the University of Florida under Warren Dixon, in the Nonlinear Controls and Robotics lab, and received the MAE department’s Best Dissertation Award in 2026. He is now a senior autonomous systems engineer at the MITRE Corporation, after serving as a research scientist and program lead at the Institute for Human \u0026 Machine Cognition, where he helped establish the National Center for Collaborative Autonomy.\nHe came to the PhD from the University of Florida with bachelor’s degrees in both Mechanical Engineering and Mathematics, having worked as a robotics research assistant across six labs as an undergraduate. His research is on composable and assured autonomy for heterogeneous robot teams operating under incomplete or unreliable information, spanning decentralized estimation, tracking, guidance and control, multi-agent planning and task allocation, and runtime verification of whether a team can accomplish its mission.\nFor the center, he is an author on Heterogeneous Multi-Agent Multi-Target Tracking using Cellular Sheaves, which appears at the European Control Conference.",
+    "description": "PhD in Mechanical Engineering under Warren Dixon; multi-agent tracking and coordination. Now a senior autonomous systems engineer at MITRE.",
     "tags": [],
     "title": "Cristian Nino",
     "uri": "/people/cristiannino/index.html"
@@ -33,7 +33,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "CODAC \u003e People",
-    "content": "PhD student Alumni AffiliationUniversity of Florida In the lab since2021 GitHub LinkedIn Tyler Hanks took his PhD at the University of Florida in CISE, advised by James Fairbanks, on coordination sheaves: machinery for assembling a control problem out of parts while still saying something about the whole. He joined the faculty of the Florida Institute of Technology in fall 2026.\nHis center work runs through the coordination-sheaf line: Distributed Multi-Agent Coordination over Cellular Sheaves, Asynchronous Nonlinear Sheaf Diffusion for Multi-Agent Coordination, and Heterogeneous Multi-Agent Multi-Target Tracking using Cellular Sheaves with Cristian Nino. Earlier work sits upstream of the optimization thrust: A Compositional Framework for First-Order Optimization, Generalized Gradient Descent is a Hypergraph Functor, and the categorical account of multistage control that became Modeling Model Predictive Control.",
+    "content": "PhD student Alumni AffiliationUniversity of Florida In the lab since2021 GitHub LinkedIn Tyler Hanks earned his PhD at the University of Florida in CISE, advised by James Fairbanks, on coordination sheaves: machinery for assembling a control problem out of parts while still saying something about the whole. He joined the faculty of the Florida Institute of Technology in fall 2026.\nHis center work runs through the coordination-sheaf line: Distributed Multi-Agent Coordination over Cellular Sheaves, Asynchronous Nonlinear Sheaf Diffusion for Multi-Agent Coordination, and Heterogeneous Multi-Agent Multi-Target Tracking using Cellular Sheaves with Cristian Nino. Earlier work sits upstream of the optimization thrust: A Compositional Framework for First-Order Optimization, Generalized Gradient Descent is a Hypergraph Functor, and the categorical account of multistage control that became Modeling Model Predictive Control.",
     "description": "PhD on coordination sheaves; optimization, control and machine learning. Now on the faculty of the Florida Institute of Technology.",
     "tags": [],
     "title": "Tyler Hanks",
@@ -46,6 +46,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Warren Dixon",
     "uri": "/people/warrendixon/index.html"
+  },
+  {
+    "breadcrumb": "CODAC \u003e People",
+    "content": "PhD student AffiliationUniversity of Florida In the lab since2022 NCR Lab Brandon Fallin is a PhD student in Mechanical Engineering at the University of Florida, in the Nonlinear Controls and Robotics lab under Warren Dixon. He earned his bachelor’s degree in Aerospace Engineering at the University of Florida in 2022 and expects to graduate in 2027.\nHis research is on privacy and obfuscation for nonlinear control systems, which puts him alongside the center’s work on Context-Aware Decisions Under Uncertainty. His full profile is on the NCR lab page.",
+    "description": "PhD student in Mechanical Engineering under Warren Dixon; privacy and obfuscation for nonlinear control systems.",
+    "tags": [],
+    "title": "Brandon Fallin",
+    "uri": "/people/brandonfallin/index.html"
   },
   {
     "breadcrumb": "CODAC \u003e Research thrusts",
@@ -73,11 +81,27 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "CODAC \u003e People",
+    "content": "PhD student AffiliationUniversity of Florida In the lab since2022 GATAS Lab GitHub George Rauta is a PhD student in CISE at the University of Florida, advised by James Fairbanks, working on numerical linear algebra and high-performance computing. He is a developer on Decapodes.jl and CombinatorialSpaces.jl, and has led the Decapodes project since 2026.\nHis work sits in Thrust 5, Scalable Implementation and Deployment: the compositional methods the center develops are only useful at scale if the computational foundation underneath them is fast. His full profile is on the GATAS Lab page.",
+    "description": "PhD student in CISE advised by James Fairbanks; numerical linear algebra and high-performance computing. Leads the Decapodes project.",
+    "tags": [],
+    "title": "George Rauta",
+    "uri": "/people/georgerauta/index.html"
+  },
+  {
+    "breadcrumb": "CODAC \u003e People",
     "content": "Co-Investigator AffiliationDuke University Duke University Miroslav Pajic leads Thrust 4, Context-Aware Decisions Under Uncertainty and contributes to Thrust 3, Compositional Optimization Algorithms.\nHe is a professor of Electrical and Computer Engineering at Duke University. His expertise is in cyber-physical systems, formal methods, and the design of assured autonomy under stochastic and adversarial uncertainty.",
     "description": "Professor of Electrical and Computer Engineering at Duke University; lead of the decisions-under-uncertainty thrust.",
     "tags": [],
     "title": "Miroslav Pajic",
     "uri": "/people/miroslavpajic/index.html"
+  },
+  {
+    "breadcrumb": "CODAC \u003e People",
+    "content": "PhD student AffiliationUniversity of Florida In the lab since2023 NCR Lab LinkedIn Keith Currier is a PhD student in Mechanical Engineering at the University of Florida, in the Nonlinear Controls and Robotics lab under Warren Dixon. He earned his bachelor’s degree in Mechanical Engineering at the University of Central Florida in 2023, where he worked in the WEAR laboratory on myoelectric control of an upper-limb exoskeleton and on machine learning for hand gesture recognition. He expects to graduate in 2028.\nHe works on physics-informed encoder-decoder networks for nonlinear control, manifold and metric learning, and network systems, which connects him to Learning and Control for Open Systems. His full profile is on the NCR lab page.",
+    "description": "PhD student in Mechanical Engineering under Warren Dixon; physics-informed networks for nonlinear control, manifold learning, and network systems.",
+    "tags": [],
+    "title": "Keith Currier",
+    "uri": "/people/keithcurrier/index.html"
   },
   {
     "breadcrumb": "CODAC \u003e People",
@@ -113,11 +137,43 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "CODAC \u003e People",
+    "content": "PhD student AffiliationUniversity of Florida In the lab since2024 GATAS Lab GitHub Joana Bou Barcelo is a PhD student in Mechanical and Aerospace Engineering at the University of Florida, advised by James Fairbanks. Her work combines the compositional methods of Thrust 1 with the nonlinear control of Thrust 2, Learning and Control for Open Systems, applying cellular sheaves to coordination problems in multi-agent systems.\nShe is an author on Heterogeneous Multi-Agent Multi-Target Tracking using Cellular Sheaves, which poses the tracking of several unknown targets as a harmonic extension problem on a cellular sheaf, and presented the work at the INFORMS Optimization Society Conference in 2026. Her full profile is on the GATAS Lab page.",
+    "description": "PhD student in Mechanical and Aerospace Engineering advised by James Fairbanks; cellular sheaves for multi-agent control.",
+    "tags": [],
+    "title": "Joana Bou Barcelo",
+    "uri": "/people/joanaboubarcelo/index.html"
+  },
+  {
+    "breadcrumb": "CODAC \u003e People",
     "content": "Thrust Lead AffiliationGeorgia Tech Georgia Tech GitHub Hans Riess is a research scientist in Electrical and Computer Engineering at Georgia Tech, where he works with the CORE Lab. He contributes to Thrust 1, Computational Sheaf Theory, with work on cellular sheaves and sheaf-theoretic methods for networked systems.",
     "description": "Research scientist in Electrical and Computer Engineering at Georgia Tech; computational and cellular sheaf theory.",
     "tags": [],
     "title": "Hans Riess",
     "uri": "/people/hansriess/index.html"
+  },
+  {
+    "breadcrumb": "CODAC \u003e People",
+    "content": "PhD student AffiliationUniversity of Florida In the lab since2026 GATAS Lab GitHub Google Scholar Itay Kadosh is a PhD student in Mechanical and Aerospace Engineering at the University of Florida, advised by James Fairbanks. He came to UF from the University of Texas at Dallas, where he studied computer science and applied mathematics and worked in the Intelligent Robotics and Vision Lab on autonomous exploration and semantic mapping.\nHe works on the control and numerical side of CellularSheaves.jl, the package the group uses to pose multi-agent coordination as a sheaf problem: closed-loop model predictive control for multi-target tracking, a distributed harmonic extension that spreads the sheaf Laplacian’s factorization across workers without approximating the answer, and the package’s GPU continuous integration. That work spans Thrust 1 and Thrust 5. His full profile is on the GATAS Lab page.",
+    "description": "PhD student in Mechanical and Aerospace Engineering advised by James Fairbanks; distributed coordination for multi-agent systems.",
+    "tags": [],
+    "title": "Itay Kadosh",
+    "uri": "/people/itaykadosh/index.html"
+  },
+  {
+    "breadcrumb": "CODAC \u003e People",
+    "content": "Research Scientist AffiliationUniversity of Florida In the lab since2026 NCR Lab LinkedIn Wilmer Leal is a research scientist in the Nonlinear Controls and Robotics lab at the University of Florida, which he joined in January 2026 after three years as a postdoctoral associate at UF jointly appointed in Computer \u0026 Information Science \u0026 Engineering and in Mechanical and Aerospace Engineering. He earned his PhD in Computer Science in 2022 from Leipzig University and the Max Planck Institute for Mathematics in the Sciences, and holds bachelor’s degrees in both Mathematics and Chemistry from the University of Pamplona.\nHis work develops categorical and sheaf-theoretic frameworks for compositional reasoning about time-varying data and networked dynamical systems, including temporal sheaves and distributed fixed-point computation. That places him in Thrust 1, Computational Sheaf Theory, and connects it to the Lyapunov-based and learning-enabled control of Thrust 2. His full profile is on the NCR lab page.",
+    "description": "Research scientist in the Nonlinear Controls and Robotics lab; applied category theory, computational sheaf theory, and dynamical systems.",
+    "tags": [],
+    "title": "Wilmer Leal",
+    "uri": "/people/wilmerleal/index.html"
+  },
+  {
+    "breadcrumb": "CODAC \u003e People",
+    "content": "Research Scientist AffiliationUniversity of Florida In the lab since2024 Website GATAS Lab GitHub Richard Samuelson is a research scientist in the GATAS Lab at the University of Florida, working on category theory, convex analysis, and high-performance computing.\nHe wrote the ChordalLDLt multifrontal factorization in CliqueTrees.jl, which is what the group’s sparse symmetric positive-definite solves run on; the nullspace and global-section computations in CellularSheaves.jl sit on top of it. That makes him central to Thrust 5, Scalable Implementation and Deployment, working from the algorithmic foundations of Thrust 1. His full profile is on the GATAS Lab page.",
+    "description": "Research scientist in the GATAS Lab; category theory, convex analysis, and high-performance computing.",
+    "tags": [],
+    "title": "Richard Samuelson",
+    "uri": "/people/richardsamuelson/index.html"
   },
   {
     "breadcrumb": "CODAC",
@@ -153,7 +209,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "CODAC",
-    "content": "Each investigator brings a distinct combination of expertise, and the team was assembled to cover the domains the plan requires. Every task has a responsible lead, but all investigators collaborate across the thrusts.\nThe team includes a non-academic partner, the Topos Institute, international leaders in developing and applying category theory to real-world problems. Sharing mathematical results and software implementations across thrusts is critical to the success of each one.\nInvestigators James Fairbanks Director and Principal InvestigatorUniversity of Florida\nAssistant professor of Mechanical and Aerospace Engineering at the University of Florida; director and principal investigator of the DIGICAMS center.\nWarren Dixon Co-InvestigatorVirginia Tech\nDean of the Virginia Tech College of Engineering; lead of the learning and control thrust.\nMatthew Hale Co-InvestigatorGeorgia Tech\nAssociate professor of Electrical and Computer Engineering at Georgia Tech and director of the CORE Lab; lead of the compositional optimization thrust.\nMiroslav Pajic Co-InvestigatorDuke University\nProfessor of Electrical and Computer Engineering at Duke University; lead of the decisions-under-uncertainty thrust.\nKristopher Brown Co-InvestigatorTopos Institute\nResearch scientist at the Topos Institute; lead of the implementation and deployment thrust.\nDavid Spivak Thrust LeadTopos Institute\nSenior scientist at the Topos Institute; computational sheaf theory and decisions under uncertainty.\nHans Riess Thrust LeadGeorgia Tech\nResearch scientist in Electrical and Computer Engineering at Georgia Tech; computational and cellular sheaf theory.\nPast members Students and researchers who worked on the center and have since moved on.\nCristian Nino PhD studentUniversity of FloridaAlumniLab member since 2021\nPhD in Mechanical Engineering under Warren Dixon; multi-agent tracking and coordination. Now a research scientist at IHMC.\nTyler Hanks PhD studentUniversity of FloridaAlumniLab member since 2021\nPhD on coordination sheaves; optimization, control and machine learning. Now on the faculty of the Florida Institute of Technology.\nJoin the center We are looking for graduate students, postdocs, and undergraduate researchers who want to work at the intersection of category theory and engineering.\nHow to join",
+    "content": "Each investigator brings a distinct combination of expertise, and the team was assembled to cover the domains the plan requires. Every task has a responsible lead, but all investigators collaborate across the thrusts. Graduate students, research scientists and postdocs across the partner labs do the day-to-day work of the thrusts.\nThe team includes a non-academic partner, the Topos Institute, international leaders in developing and applying category theory to real-world problems. Sharing mathematical results and software implementations across thrusts is critical to the success of each one.\nCurrent members James Fairbanks Director and Principal InvestigatorUniversity of Florida\nAssistant professor of Mechanical and Aerospace Engineering at the University of Florida; director and principal investigator of the DIGICAMS center.\nWarren Dixon Co-InvestigatorVirginia Tech\nDean of the Virginia Tech College of Engineering; lead of the learning and control thrust.\nMatthew Hale Co-InvestigatorGeorgia Tech\nAssociate professor of Electrical and Computer Engineering at Georgia Tech and director of the CORE Lab; lead of the compositional optimization thrust.\nMiroslav Pajic Co-InvestigatorDuke University\nProfessor of Electrical and Computer Engineering at Duke University; lead of the decisions-under-uncertainty thrust.\nKristopher Brown Co-InvestigatorTopos Institute\nResearch scientist at the Topos Institute; lead of the implementation and deployment thrust.\nDavid Spivak Thrust LeadTopos Institute\nSenior scientist at the Topos Institute; computational sheaf theory and decisions under uncertainty.\nRichard Samuelson Research ScientistUniversity of FloridaLab member since 2024\nResearch scientist in the GATAS Lab; category theory, convex analysis, and high-performance computing.\nWilmer Leal Research ScientistUniversity of FloridaLab member since 2026\nResearch scientist in the Nonlinear Controls and Robotics lab; applied category theory, computational sheaf theory, and dynamical systems.\nHans Riess Thrust LeadGeorgia Tech\nResearch scientist in Electrical and Computer Engineering at Georgia Tech; computational and cellular sheaf theory.\nBrandon Fallin PhD studentUniversity of FloridaLab member since 2022\nPhD student in Mechanical Engineering under Warren Dixon; privacy and obfuscation for nonlinear control systems.\nGeorge Rauta PhD studentUniversity of FloridaLab member since 2022\nPhD student in CISE advised by James Fairbanks; numerical linear algebra and high-performance computing. Leads the Decapodes project.\nKeith Currier PhD studentUniversity of FloridaLab member since 2023\nPhD student in Mechanical Engineering under Warren Dixon; physics-informed networks for nonlinear control, manifold learning, and network systems.\nJoana Bou Barcelo PhD studentUniversity of FloridaLab member since 2024\nPhD student in Mechanical and Aerospace Engineering advised by James Fairbanks; cellular sheaves for multi-agent control.\nItay Kadosh PhD studentUniversity of FloridaLab member since 2026\nPhD student in Mechanical and Aerospace Engineering advised by James Fairbanks; distributed coordination for multi-agent systems.\nPast members Students and researchers who worked on the center and have since moved on.\nCristian Nino PhD studentUniversity of FloridaAlumniLab member since 2021\nPhD in Mechanical Engineering under Warren Dixon; multi-agent tracking and coordination. Now a senior autonomous systems engineer at MITRE.\nTyler Hanks PhD studentUniversity of FloridaAlumniLab member since 2021\nPhD on coordination sheaves; optimization, control and machine learning. Now on the faculty of the Florida Institute of Technology.\nJoin the center We are looking for graduate students, postdocs, and undergraduate researchers who want to work at the intersection of category theory and engineering.\nHow to join",
     "description": "The people of the DIGICAMS center, spanning control, optimization, cyber-physical systems, and applied category theory.",
     "tags": [],
     "title": "People",
@@ -201,7 +257,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "CODAC \u003e News",
-    "content": "Two students who worked on the center have completed their PhDs at the University of Florida.\nTyler Hanks Tyler was hooded in May 2026, having started in 2021 in CISE. His thesis runs through coordination sheaves: the machinery for assembling a control problem out of parts while still being able to say something about the whole, which is close to the question the center is organized around. He is an author on Distributed Multi-Agent Coordination over Cellular Sheaves at CDC 2025, on Asynchronous Nonlinear Sheaf Diffusion for Multi-Agent Coordination at ACC, and on Heterogeneous Multi-Agent Multi-Target Tracking using Cellular Sheaves at ECC. Earlier work of his sits upstream of the optimization thrust: compositional convex optimization, and the categorical framework for multistage control problems that became Modeling Model Predictive Control at ACC 2024.\nIn the fall he joined the faculty of the Florida Institute of Technology.\nCristian Nino Cristian took his PhD in Mechanical Engineering under Warren Dixon, in the Nonlinear Controls and Robotics lab, on online reinforcement learning, stochastic control and network control for multi-agent guidance and optimization. He received the MAE department’s Best Dissertation Award for 2026. He is a co-author with Tyler on the ECC tracking paper, which is where the two lines of work meet: a team of dissimilar agents tracking several targets at once, posed on a cellular sheaf.\nHe is now a research scientist in collaborative autonomy at the Institute for Human \u0026 Machine Cognition in Pensacola.\nBoth are listed under past members, and their center papers are on the publications page.",
+    "content": "Two students who worked on the center have completed their PhDs at the University of Florida.\nTyler Hanks Tyler was hooded in May 2026, having started in 2021 in CISE. His thesis runs through coordination sheaves: the machinery for assembling a control problem out of parts while still being able to say something about the whole, which is close to the question the center is organized around. He is an author on Distributed Multi-Agent Coordination over Cellular Sheaves at CDC 2025, on Asynchronous Nonlinear Sheaf Diffusion for Multi-Agent Coordination at ACC, and on Heterogeneous Multi-Agent Multi-Target Tracking using Cellular Sheaves at ECC. Earlier work of his sits upstream of the optimization thrust: compositional convex optimization, and the categorical framework for multistage control problems that became Modeling Model Predictive Control at ACC 2024.\nIn the fall he joined the faculty of the Florida Institute of Technology.\nCristian Nino Cristian earned his PhD in Mechanical Engineering under Warren Dixon, in the Nonlinear Controls and Robotics lab, on online reinforcement learning, stochastic control and network control for multi-agent guidance and optimization. He received the MAE department’s Best Dissertation Award for 2026. He is a co-author with Tyler on the ECC tracking paper, which is where the two lines of work meet: a team of dissimilar agents tracking several targets at once, posed on a cellular sheaf.\nHe is now a research scientist in collaborative autonomy at the Institute for Human \u0026 Machine Cognition in Pensacola.\nBoth are listed under past members, and their center papers are on the publications page.",
     "description": "Two of the center's students have finished: Tyler Hanks on coordination sheaves, and Cristian Nino on multi-agent tracking and control.",
     "tags": [],
     "title": "Tyler Hanks and Cristian Nino complete their PhDs",
