@@ -1,0 +1,107 @@
+# Holding a formation by offset, not by distance.
+#
+# Every edge here is `translation`: the edge stalk is the *full* vertex stalk,
+# both restriction maps are the identity on the linear part, and each end
+# carries its own reference position as the affine offset. The section
+# condition is then
+#
+#     p_to - p_from = delta
+#
+# an exact linear equation on the relative position. Compare `direction`, whose
+# edge stalk is R^1 and which constrains only `u . (p_to - p_from)` for a `u`
+# frozen at the reference layout: the linearisation of the distance.
+#
+# What changes
+# ------------
+#
+#              edges  D       rank  dim ker D   rotate by 0.4 rad
+#   direction      4  4 x 8      4          4   energy 1.25e-2  (linearisation error)
+#   translation    4  8 x 8      6          2   energy 3.16e-1  (genuinely disallowed)
+#
+# Two things are different, and only one of them is about rigidity.
+#
+# The kernel shrinks to `dim = 2`, the translations, because a fixed offset in
+# world axes pins orientation as well as shape. There is no rotation and no
+# shear to be had -- which is right, and is why `dim ker D` here is `d` rather
+# than `d(d+1)/2`.
+#
+# And the constraint is *exact*. Translate this formation by any amount, however
+# large, and the Dirichlet energy is zero -- not small, zero. Nothing was
+# dropped, so there is no second-order error to accumulate, no degenerate
+# configuration where the rank collapses, and no gap between the flexes and the
+# motions. The `True rotations` checkbox never appears, because none of these
+# flexes generates a rotation.
+#
+# Feasibility is a cocycle condition
+# -------------------------------------
+#
+# The reference layout sets `delta`, but only as a parameter: write
+# `delta = [2.5, 0.0]` on one edge to ask for a different offset. Do that here
+# and the sheaf becomes infeasible, which is the point.
+#
+# A set of desired offsets is realizable exactly when it sums to zero around
+# every cycle -- it has to be the coboundary of a configuration, not merely an
+# assignment of vectors to edges. Round this square the layout's offsets give
+# (1,0) + (0,1) + (-1,0) + (0,-1) = 0. Stretch one side to 2.5 and the sum is
+# (1.5, 0): the formation cannot close, and `r_sheaf` becomes 0.75, the gap
+# spread over the cycle's four edges.
+#
+# Scale all four offsets, or shear them together, and the sum still vanishes
+# and the sheaf stays feasible. So `r_sheaf` here is not measuring a
+# linearisation error, as it would for `direction`. It is measuring a genuine
+# obstruction: the class of the offset assignment in the cokernel.
+
+[sheaf]
+name = "Offset formation"
+dim  = 2
+
+[[vertices]]
+id   = "a"
+icon = "quadcopter"
+p0   = [0.0, 0.0]
+
+[[vertices]]
+id   = "b"
+icon = "quadcopter"
+p0   = [1.0, 0.0]
+
+[[vertices]]
+id   = "c"
+icon = "quadcopter"
+p0   = [1.0, 1.0]
+
+[[vertices]]
+id   = "d"
+icon = "quadcopter"
+p0   = [0.0, 1.0]
+
+[[edges]]
+from  = "a"
+to    = "b"
+stalk = 2
+map   = { kind = "translation" }
+
+[[edges]]
+from  = "b"
+to    = "c"
+stalk = 2
+map   = { kind = "translation" }
+
+[[edges]]
+from  = "c"
+to    = "d"
+stalk = 2
+map   = { kind = "translation" }
+
+[[edges]]
+from  = "d"
+to    = "a"
+stalk = 2
+map   = { kind = "translation" }
+
+[defaults]
+pins = ["a"]     # one agent determines the whole formation
+
+[expect]
+dim_ker_D = 2    # the translations, and nothing else
+residual  = 0.0

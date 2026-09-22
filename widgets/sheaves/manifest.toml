@@ -1,0 +1,47 @@
+# The example set, and the order the picker offers it in.
+#
+# This file is data so that it does not have to be upstreamed. A downstream
+# project serving `dist/app.js` points `<sheaf-explorer manifest="...">` at its
+# own copy, lists its own sheaves, and never touches this repository. What used
+# to be an `EXAMPLES` literal in `app.ts` and an `ORDER` literal in
+# `standalone.ts` -- two lists that had to be kept in step by hand -- is this
+# one file, read at runtime by the served build and inlined at build time by
+# the standalone one.
+#
+# `title` and `blurb` are the header the explorer draws above the panels, so a
+# consumer can relabel the whole thing without forking the element.
+title = "Cellular Sheaf Explorer"
+blurb = "Drag an agent. Toggle pins. Scrub <em>t</em>. Edit the TOML."
+
+# Simplest first, and each one a single step from the last: the braced square is
+# the rigidity sheaf with nothing extra, deleting its brace adds a shear,
+# collapsing it to a line is where the linearisation starts lying, and the last
+# two break feasibility and then change domain. Tracking comes last because it
+# is the only one that is not a variation on a square.
+#
+# `src` defaults to `<id>.toml` resolved against this file, so an entry only
+# needs one when its document lives somewhere else.
+
+[[examples]]
+id = "braced-square"
+label = "Braced square"
+
+[[examples]]
+id = "bare-square"
+label = "Bare square"
+
+[[examples]]
+id = "degenerate-triangle"
+label = "Degenerate triangle"
+
+[[examples]]
+id = "offset-formation"
+label = "Offset formation"
+
+[[examples]]
+id = "infeasible-cycle"
+label = "Infeasible cycle"
+
+[[examples]]
+id = "multi-domain-tracking"
+label = "Multi-domain tracking"

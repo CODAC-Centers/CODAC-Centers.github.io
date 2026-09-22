@@ -1,0 +1,57 @@
+# The same square with the brace deleted, and nothing else changed.
+#
+# One edge apart from `braced-square.toml`, and the readout goes from 3 to 4:
+# the framework now has a shear flex beyond the trivial motions, so the same
+# three pins leave one degree of freedom, and sweeping the null vector
+# animates the square shearing into a rhombus.
+
+[sheaf]
+name = "Bare square"
+dim  = 2
+
+[[vertices]]
+id = "a"
+p0 = [0.0, 0.0]
+
+[[vertices]]
+id = "b"
+p0 = [1.0, 0.0]
+
+[[vertices]]
+id = "c"
+p0 = [1.0, 1.0]
+
+[[vertices]]
+id = "d"
+p0 = [0.0, 1.0]
+
+[[edges]]
+from = "a"
+to   = "b"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "b"
+to   = "c"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "c"
+to   = "d"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "d"
+to   = "a"
+stalk = 1
+map  = { kind = "direction" }
+
+[defaults]
+pins = ["a", "b.y"]
+
+[expect]
+dim_ker_D = 4     # 3 trivial + 1 shear flex
+residual  = 0.0

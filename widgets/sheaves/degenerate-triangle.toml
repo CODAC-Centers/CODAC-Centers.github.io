@@ -1,0 +1,79 @@
+# Rigid, but not infinitesimally rigid: where the linearisation lies.
+#
+# Three collinear agents, every pair joined. Because a, b and c are in a line,
+# |ac| = |ab| + |bc| exactly, and the triangle inequality is tight. So there is
+# no other configuration with these three distances: the framework is *rigid*.
+# Move b off the line by any finite amount and |ab| and |bc| both grow.
+#
+# The sheaf does not see that. Its edges constrain
+#
+#     u . (p_u - p_v) = u . (p0_u - p0_v)
+#
+# where `u` is the unit vector along the edge in the reference configuration.
+# That is the derivative of the distance constraint, not the constraint: it
+# says the relative velocity has no component *along* the edge. Here all three
+# edges point the same way, so every vertical motion satisfies all three, and
+# `D` comes out 3x6 of rank 2 rather than 3. One degree of freedom too many.
+#
+# Pin a and c and the survivor is exactly b.y. Sweep it and watch:
+#
+#     t     |ab|     |bc|    Dirichlet energy
+#     0.0   1.0000   1.0000  0
+#     0.3   1.0440   1.0440  0
+#     0.6   1.1662   1.1662  0
+#
+# The bars visibly stretch and the sheaf reports no cost at all, because the
+# growth is second order in t and the linearisation kept only the first. That
+# is the whole content of the word "infinitesimal": `ker D` is the tangent
+# space to the set of valid configurations, and at a degenerate point like this
+# one the tangent space is bigger than the set it is tangent to. The flex is a
+# direction you can start to move in, not a direction you can move in.
+#
+# Nudge b off the line -- change its p0 to [1.0, 0.35] -- and the degeneracy
+# goes: rank becomes 3, dim ker D drops to the 3 trivial motions, and the
+# framework becomes infinitesimally rigid. Degeneracy is the exception, which
+# is why infinitesimal rigidity is usually the right thing to test for.
+
+[sheaf]
+name = "Degenerate triangle"
+dim  = 2
+
+[[vertices]]
+id   = "a"
+icon = "target"
+p0   = [0.0, 0.0]
+
+[[vertices]]
+id   = "b"
+icon = "target"
+p0   = [1.0, 0.0]
+
+[[vertices]]
+id   = "c"
+icon = "target"
+p0   = [2.0, 0.0]
+
+[[edges]]
+from  = "a"
+to    = "b"
+stalk = 1
+map   = { kind = "direction" }
+
+[[edges]]
+from  = "b"
+to    = "c"
+stalk = 1
+map   = { kind = "direction" }
+
+[[edges]]
+from  = "a"
+to    = "c"
+stalk = 1
+map   = { kind = "direction" }
+
+[defaults]
+pins = ["a", "c"]   # leaves exactly the phantom flex: b moving off the line
+
+[expect]
+dim_ker_D = 4       # 3 trivial planar motions, plus one that is not a motion
+residual  = 0.0

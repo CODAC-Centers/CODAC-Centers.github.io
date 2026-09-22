@@ -1,0 +1,78 @@
+# A doubly-braced square with an offset on one edge: infeasible.
+#
+# An offset can only break feasibility when the framework carries a
+# *self-stress*, because `r_sheaf = min_p || D p - c ||` is nonzero exactly when
+# `c` has a component in `ker D^T`. The singly-braced square of
+# `braced-square.toml` has `D` of shape 5x8 and rank 5 -- surjective, so
+# `ker D^T = 0` and every right-hand side is reachable, no matter what offsets
+# are written. Adding the second diagonal makes it 6x8, still of rank 5 (the
+# rigidity matrix of a 4-vertex framework in the plane cannot exceed 2*4 - 3),
+# so one self-stress appears and the offset finally has somewhere to obstruct.
+#
+# That self-stress is the cycle the obstruction cochain lights up. Dragging the
+# offset in app mode makes the residual move continuously, which demonstrates
+# infeasibility better than a dimension counter flipping.
+
+[sheaf]
+name = "Infeasible cycle"
+dim  = 2
+
+[[vertices]]
+id = "a"
+p0 = [0.0, 0.0]
+
+[[vertices]]
+id = "b"
+p0 = [1.0, 0.0]
+
+[[vertices]]
+id = "c"
+p0 = [1.0, 1.0]
+
+[[vertices]]
+id = "d"
+p0 = [0.0, 1.0]
+
+[[edges]]
+from   = "a"
+to     = "b"
+stalk  = 1
+map    = { kind = "direction" }
+offset = [0.3]
+
+[[edges]]
+from = "b"
+to   = "c"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "c"
+to   = "d"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "d"
+to   = "a"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "a"
+to   = "c"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "b"
+to   = "d"
+stalk = 1
+map  = { kind = "direction" }
+
+[defaults]
+pins = ["a", "b.y"]
+
+[expect]
+dim_ker_D = 3      # still just the trivial motions; the extra edge adds a stress, not a flex
+residual  = 0.10606601717798213   # 0.3 / (2 * sqrt(2)): the offset projected onto the self-stress

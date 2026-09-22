@@ -1,0 +1,68 @@
+# The rigidity sheaf on a square with one diagonal brace.
+#
+# Each edge constrains the component of relative motion along its own length,
+# which is exactly the rigidity matrix of the framework. The brace removes the
+# shear flex, leaving only the Euclidean trivial motions.
+
+[sheaf]
+name = "Braced square"
+dim  = 2
+
+[[vertices]]
+id = "a"
+p0 = [0.0, 0.0]
+
+[[vertices]]
+id = "b"
+p0 = [1.0, 0.0]
+
+[[vertices]]
+id = "c"
+p0 = [1.0, 1.0]
+
+[[vertices]]
+id = "d"
+p0 = [0.0, 1.0]
+
+[[edges]]
+from = "a"
+to   = "b"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "b"
+to   = "c"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "c"
+to   = "d"
+stalk = 1
+map  = { kind = "direction" }
+
+[[edges]]
+from = "d"
+to   = "a"
+stalk = 1
+map  = { kind = "direction" }
+
+# The brace, written out explicitly to exercise the syntax. It is the same map
+# `{ kind = "direction" }` would generate for this edge: the unit vector along
+# a -> c, with each end's offset `-u . p0` so that the reference configuration
+# satisfies it. The two ends differ only in that offset, which is why this edge
+# needs `from_map` / `to_map` rather than a single shared `map`.
+[[edges]]
+from     = "a"
+to       = "c"
+stalk    = 1
+from_map = { kind = "explicit", A = [[0.7071067811865476, 0.7071067811865476]], b = [0.0] }
+to_map   = { kind = "explicit", A = [[0.7071067811865476, 0.7071067811865476]], b = [-1.4142135623730951] }
+
+[defaults]
+pins = ["a", "b.y"]
+
+[expect]
+dim_ker_D = 3     # exactly the Euclidean trivial motions in 2D
+residual  = 0.0
