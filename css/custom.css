@@ -1402,3 +1402,57 @@ table.codac-table tbody tr:hover {
 #R-content-wrapper .R-shortcutmenu-main > ul > li.active > a {
   box-shadow: inset 3px 0 0 var(--codac-accent-ink);
 }
+
+/* ---- Embedded widgets ------------------------------------------------- */
+/* A widget is a whole document of its own (see layouts/shortcodes/widget.html),
+   so the only thing this side owns is the plate it sits on. The frame is given
+   its height inline, because that is the one dimension the page cannot infer:
+   an iframe has no idea how tall its contents want to be.
+
+   It breaks out of the content column. The widget puts three panels side by
+   side and reads as a cramped column at the measure body copy wants, so it
+   takes the width the main region actually has. */
+.codac-widget {
+  margin: 2rem 0;
+}
+
+.codac-widget__frame {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--codac-accent, var(--CODAC-HUE-BLUE-color));
+  border-radius: 6px;
+  background: var(--MAIN-BG-color);
+}
+
+.codac-widget__links {
+  margin-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* Link-only mode: no frame, so the button is the whole component and has to
+   carry the weight the frame was carrying. */
+.codac-widget--linkonly .codac-widget__links {
+  margin-top: 0;
+}
+
+.codac-btn--lg {
+  font-size: 1.05rem;
+  padding: 0.55rem 1.1rem;
+}
+
+.codac-widget__note {
+  font-size: 0.85rem;
+  color: var(--MAIN-TEXT-color);
+  opacity: 0.75;
+}
+
+@media (min-width: 60rem) {
+  /* Widen past the measure, but never past the region the content sits in.
+     100vw would slide under the sidebar. */
+  .codac-widget {
+    width: min(100%, 68rem);
+  }
+}
